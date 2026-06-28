@@ -19,7 +19,13 @@ public function up(): void
         $table->string('email')->unique();
         $table->string('password');
         $table->boolean('is_active')->default(true);
+        $table->uuid('role_id');
         $table->timestamps();
+
+        $table->foreign('role_id')
+              ->references('id')
+              ->on('roles')
+              ->cascadeOnDelete();
 
     });
 
